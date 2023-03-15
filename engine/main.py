@@ -1,5 +1,5 @@
 # AKI 09/03/2023
-# test
+import random
 
 import pygame
 import sys
