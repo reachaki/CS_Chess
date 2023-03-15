@@ -45,11 +45,14 @@ class Game:
 
             # loop all valid moves
             for move in piece.moves:
-                # color
-                color = '#C86464' if (
-                    move.final.row + move.final.col) % 2 == 0 else '#C84646'
-                # rect
-                rect = (move.final.col * SQSIZE,
-                        move.final.row * SQSIZE, SQSIZE, SQSIZE)
-                # blit
-                pygame.draw.rect(surface, color, rect)
+                # color with lower opacity
+                color = (213, 213, 194, 255) if (
+                    move.final.row + move.final.col) % 2 == 0 else (69, 98, 132, 255)
+                # position
+                x = move.final.col * SQSIZE + SQSIZE // 2
+                y = move.final.row * SQSIZE + SQSIZE // 2
+                # radius
+                radius = SQSIZE // 5
+
+                # draw circle
+                pygame.draw.circle(surface, color, (x, y), radius)
