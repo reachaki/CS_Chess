@@ -20,19 +20,19 @@ class Board:
         if isinstance(piece, Pawn):
             pass
 
-        elif isinstance(piece.Knight):
+        elif isinstance(piece, Knight):
             pass
 
-        elif isinstance(piece.Bishop):
+        elif isinstance(piece, Bishop):
             pass
 
-        elif isinstance(piece.Rook):
+        elif isinstance(piece, Rook):
             pass
 
-        elif isinstance(piece.Queen):
+        elif isinstance(piece, Queen):
             pass
 
-        elif isinstance(piece.King):
+        elif isinstance(piece, King):
             pass
 
     def _create(self):
