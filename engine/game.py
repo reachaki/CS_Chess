@@ -46,8 +46,8 @@ class Game:
             # loop all valid moves
             for move in piece.moves:
                 # color with lower opacity
-                color = (213, 213, 194, 255) if (
-                    move.final.row + move.final.col) % 2 == 0 else (69, 98, 132, 255)
+                color = (213, 213, 194) if (
+                    move.final.row + move.final.col) % 2 == 0 else (69, 98, 132)
                 # position
                 x = move.final.col * SQSIZE + SQSIZE // 2
                 y = move.final.row * SQSIZE + SQSIZE // 2
