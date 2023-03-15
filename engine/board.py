@@ -28,7 +28,7 @@ class Board:
                 (row-1, col+2),
                 (row-2, col+1),
                 (row-2, col-1),
-                (row-1, col-2),
+                (row-1, col-2)
             ]
 
             for possible_move in possible_moves:
@@ -37,11 +37,10 @@ class Board:
                 if Square.in_range(possible_move_row, possible_move_col):
                     if self.squares[possible_move_row][possible_move_col].isempty_or_rival(piece.color):
                         # create squares of the new move
-                        inital = Square(row, col)
-                        final = Square(possible_move_row,
-                                       possible_move_col)  # piece=piece
+                        initial = Square(row, col)
+                        final = Square(possible_move_row, possible_move_col)
                         # create new move
-                        move = Move(inital, final)
+                        move = Move(initial, final)
                         # append new valid move
                         piece.add_move(move)
 
