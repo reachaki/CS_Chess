@@ -1,5 +1,4 @@
 # AKI 09/03/2023
-import random
 
 import pygame
 import sys
@@ -58,6 +57,7 @@ class Main:
                 # release
                 elif event.type == pygame.MOUSEBUTTONUP:
                     dragger.undrag_piece()
+
                 # quit
                 elif event.type == pygame.QUIT:
                     pygame.quit()

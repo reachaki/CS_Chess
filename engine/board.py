@@ -12,6 +12,29 @@ class Board:
         self._add_piece('white')
         self._add_piece('black')
 
+    def clac_moves(self, piece, row, col):
+        '''
+        calculate all the valid moves of a specific piece of a specific position
+        '''
+
+        if isinstance(piece, Pawn):
+            pass
+
+        elif isinstance(piece.Knight):
+            pass
+
+        elif isinstance(piece.Bishop):
+            pass
+
+        elif isinstance(piece.Rook):
+            pass
+
+        elif isinstance(piece.Queen):
+            pass
+
+        elif isinstance(piece.King):
+            pass
+
     def _create(self):
 
         for row in range(ROWS):
