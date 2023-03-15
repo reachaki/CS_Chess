@@ -15,10 +15,10 @@ class Game:
         for row in range(ROWS):
             for col in range(COLS):
                 if (row + col) % 2 == 0:
-                    # cream
-                    color = (242, 242, 225)
+                    # cream (236,236,215)
+                    color = (236, 236, 215)
                 else:
-                    color = (75, 115, 153)  # blue
+                    color = (77, 109, 146)  # blue (77,109,146)
 
                 rect = (col * SQSIZE, row * SQSIZE, SQSIZE, SQSIZE)
 
