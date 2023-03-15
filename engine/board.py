@@ -17,11 +17,32 @@ class Board:
         calculate all the valid moves of a specific piece of a specific position
         '''
 
+        def knight_moves():
+            # 8 possible moves
+            possible_moves = [
+                (row+1, col-2),
+                (row+2, col-1),
+                (row+2, col+1),
+                (row+1, col+2),
+                (row-1, col+2),
+                (row-2, col+1),
+                (row-2, col-1),
+                (row-1, col-2),
+            ]
+
+            for possible_move in possible_moves:
+                possible_move_row, possible_move_col = possible_move
+
+                if Square.in_range(possible_move_row, possible_move_col):
+                    if self.squares[possible_move_row][possible_move_col].isempty_or_rival(piece.color):
+                        # create new move
+                        pass
+
         if isinstance(piece, Pawn):
             pass
 
         elif isinstance(piece, Knight):
-            pass
+            knight_moves()
 
         elif isinstance(piece, Bishop):
             pass
