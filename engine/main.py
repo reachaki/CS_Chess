@@ -14,6 +14,12 @@ class Main:
         pygame.display.set_caption("CHESS")  # caption of application
         self.game = Game()
 
+    # load the icon image
+    icon = pygame.image.load('assets/images/icon.png')
+
+    # set the icon
+    pygame.display.set_icon(icon)
+
     def mainloop(self):  # main loop
 
         screen = self.screen
