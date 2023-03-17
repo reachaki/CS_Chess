@@ -16,7 +16,6 @@ class Main:
 
     # load the icon image
     icon = pygame.image.load('assets/images/icon.png')
-
     # set the icon
     pygame.display.set_icon(icon)
 
