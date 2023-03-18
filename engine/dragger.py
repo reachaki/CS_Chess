@@ -26,7 +26,6 @@ class Dragger:
         surface.blit(img, self.piece.texture_rect)
 
     # other method
-
     def update_mouse(self, pos):
         self.mouseX, self.mouseY = pos
 
