@@ -8,7 +8,6 @@ class Board:
 
     def __init__(self):
         self.squares = [[0, 0, 0, 0, 0, 0, 0, 0] for col in range(COLS)]
-
         self._create()
         self._add_piece('white')
         self._add_piece('black')
@@ -17,7 +16,6 @@ class Board:
         '''
         calculate all the valid moves of a specific piece of a specific position
         '''
-
         def knight_moves():
             # 8 possible moves
             possible_moves = [
