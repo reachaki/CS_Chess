@@ -25,7 +25,20 @@ class Board:
             start = row + piece.dir
             end = row + (piece.dir * (1 + steps))
             for move_row in range(start, end, piece.dir):
-                pass
+                if Square.in_range(move_row):
+                    if self.squares[move_row][col].isempty():
+                        # create inital and final move squares
+                        initial = Square(row, col)
+                        final = Square(move_row, col)
+                        # create a new move
+                        move = Move(initial, final)
+                        piece.add_move(move)
+                    # blocked
+                    else:
+                        break
+                    # not in range
+                else:
+                    break
 
         def knight_moves():
             # 8 possible moves
