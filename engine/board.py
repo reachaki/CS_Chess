@@ -18,10 +18,8 @@ class Board:
         '''
 
         def pawn_moves():
-            if piece.moved:
-                steps = 1
-            else:
-                steps = 2
+            # steps
+            steps = 1 if piece.moved else 2
 
         def knight_moves():
             # 8 possible moves
