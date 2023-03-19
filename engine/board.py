@@ -16,6 +16,10 @@ class Board:
         '''
         calculate all the valid moves of a specific piece of a specific position
         '''
+
+        def pawn_moves():
+            pass
+
         def knight_moves():
             # 8 possible moves
             possible_moves = [
@@ -43,7 +47,7 @@ class Board:
                         piece.add_move(move)
 
         if isinstance(piece, Pawn):
-            pass
+            pawn_moves()
 
         elif isinstance(piece, Knight):
             knight_moves()
