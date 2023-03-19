@@ -21,6 +21,12 @@ class Board:
             # steps
             steps = 1 if piece.moved else 2
 
+            # vertical moves
+            start = row + piece.dir
+            end = row + (piece.dir * (1 + steps))
+            for move_row in range(start, end, piece.dir):
+                pass
+
         def knight_moves():
             # 8 possible moves
             possible_moves = [
