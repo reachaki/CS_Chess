@@ -96,6 +96,7 @@ class Board:
         # Pawns
         for col in range(COLS):
             self.squares[row_pawn][col] = Square(row_pawn, col, Pawn(color))
+            self.squares[4][0] = Square(4, 0, Pawn(color))
 
         # Knights
         self.squares[row_other][1] = Square(row_other, 1, Knight(color))
