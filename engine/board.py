@@ -100,10 +100,14 @@ class Board:
                             # append new move
                             piece.add_move(move)
 
-                        # has enemy piece
+                        # has enemy piece = add move + break
                         if self.squares[possible_move_row][possible_move_col].has_enemy_piece(piece.color):
                             # append new move
                             piece.add_move(move)
+                            break
+
+                        # has team piece = break
+                        if self.squares[possible_move_row][possible_move_col].has_enemy_piece(piece.color):
                             break
 
                     # not in range
