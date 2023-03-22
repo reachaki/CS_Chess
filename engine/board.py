@@ -82,7 +82,37 @@ class Board:
                         piece.add_move(move)
 
         def strightline_moves(incrs):
-            pass
+            for incr in incrs:
+                row_incr, col_incr = incr
+                possible_move_row = row + row_incr
+                possible_move_col = col + col_incr
+
+                while True:
+                    if Square.in_range(possible_move_row, possible_move_col):
+                        # create squares of the possible new move
+                        initial = Square(row, col)
+                        final = Square(possible_move_row, possible_move_col)
+                        # crete new move
+                        move = Move(initial, final)
+
+                        # empty = continue looping
+                        if self.squares[possible_move_row][possible_move_col].isempty():
+                            # append new move
+                            piece.add_move(move)
+
+                        # has enemy piece
+                        if self.squares[possible_move_row][possible_move_col].has_enemy_piece(piece.color):
+                            # append new move
+                            piece.add_move(move)
+                            break
+
+                    # not in range
+                    else:
+                        break
+
+                    # incrementing increments
+                    possible_move_row = possible_move_row + row_incr
+                    possible_move_col = possible_move_col + col_incr
 
         if isinstance(piece, Pawn):
             pawn_moves()
