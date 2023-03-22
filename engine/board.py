@@ -131,6 +131,26 @@ class Board:
                 (row-1, col-1)  # up-left
             ]
 
+            # normal moves
+            for possible_move in adjs:
+                possible_move_row, possible_move_col = possible_move
+
+                if Square.in_range(possible_move_row, possible_move_col):
+                    if self.squares[possible_move_row][possible_move_col].isenpty_or_enemy(piece.color):
+                        # create squares of the new move
+                        initial = Square(row, col)
+                        final = Square(possible_move_row, possible_move_col)
+                        # create new move
+                        move = Move(initial, final)
+                        # append new valid move
+                        piece.add_move(move)
+
+            # castling moves
+
+            # queen castling
+
+            # king castling
+
         if isinstance(piece, Pawn):
             pawn_moves()
 
@@ -166,7 +186,7 @@ class Board:
             ])
 
         elif isinstance(piece, King):
-            pass
+            king_moves()
 
     def _create(self):
 
@@ -198,3 +218,4 @@ class Board:
 
         # King
         self.squares[row_other][4] = Square(row_other, 4, King(color))
+        self.squares[3][3] = Square(3, 3, King(color))
