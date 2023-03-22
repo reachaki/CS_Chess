@@ -107,7 +107,7 @@ class Board:
                             break
 
                         # has team piece = break
-                        if self.squares[possible_move_row][possible_move_col].has_enemy_piece(piece.color):
+                        if self.squares[possible_move_row][possible_move_col].has_team_piece(piece.color):
                             break
 
                     # not in range
@@ -145,7 +145,7 @@ class Board:
                 (-1, 1),  # up-right
                 (-1, -1),  # up-left
                 (1, 1),  # down-right
-                (1, -1)  # down-left
+                (1, -1),  # down-left
                 (-1, 0),  # up
                 (1, 0),  # down
                 (0, -1),  # left
@@ -167,7 +167,6 @@ class Board:
         # Pawns
         for col in range(COLS):
             self.squares[row_pawn][col] = Square(row_pawn, col, Pawn(color))
-            self.squares[5][3] = Square(5, 3, Pawn(color))
 
         # Knights
         self.squares[row_other][1] = Square(row_other, 1, Knight(color))
@@ -176,6 +175,7 @@ class Board:
         # Bishops
         self.squares[row_other][2] = Square(row_other, 2, Bishop(color))
         self.squares[row_other][5] = Square(row_other, 5, Bishop(color))
+        self.squares[4][3] = Square(5, 3, Bishop(color))
 
         # Rooks
         self.squares[row_other][0] = Square(row_other, 0, Rook(color))
