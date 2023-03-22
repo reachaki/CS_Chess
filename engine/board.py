@@ -32,6 +32,7 @@ class Board:
                         final = Square(possible_move_row, col)
                         # create a new move
                         move = Move(initial, final)
+                        # append new move
                         piece.add_move(move)
                     # blocked
                     else:
@@ -48,9 +49,10 @@ class Board:
                     if self.squares[possible_move_row][possible_move_col].has_enemy_piece(piece.color):
                         # create inital and final move squares
                         initial = Square(row, col)
-                        final = Square(possible_move_row, col)
+                        final = Square(possible_move_row, possible_move_col)
                         # create a new move
                         move = Move(initial, final)
+                        # append new move
                         piece.add_move(move)
 
         def knight_moves():
