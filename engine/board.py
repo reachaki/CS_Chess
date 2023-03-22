@@ -118,6 +118,19 @@ class Board:
                     possible_move_row = possible_move_row + row_incr
                     possible_move_col = possible_move_col + col_incr
 
+        def king_moves():
+            # possible moves = adjacent squares
+            adjs = [
+                (row-1, col+0)  # up
+                (row-1, col+1)  # up-right
+                (row+0, col+1)  # right
+                (row+1, col+1)  # down-right
+                (row+1, col+0)  # down
+                (row+1, col-1)  # down-left
+                (row+0, col-1)  # left
+                (row-1, col-1)  # up-left
+            ]
+
         if isinstance(piece, Pawn):
             pawn_moves()
 
@@ -179,11 +192,9 @@ class Board:
         # Rooks
         self.squares[row_other][0] = Square(row_other, 0, Rook(color))
         self.squares[row_other][7] = Square(row_other, 7, Rook(color))
-        self.squares[4][4] = Square(4, 4, Rook(color))
 
         # Queen
         self.squares[row_other][3] = Square(row_other, 3, Queen(color))
-        self.squares[3][3] = Square(3, 3, Queen(color))
 
         # King
         self.squares[row_other][4] = Square(row_other, 4, King(color))
