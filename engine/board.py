@@ -46,7 +46,12 @@ class Board:
             for possible_move_col in possible_move_cols:
                 if Square.in_range(possible_move_row, possible_move_col):
                     if self.squares[possible_move_row][possible_move_col].has_enemy_piece(piece.color):
-                        pass
+                        # create inital and final move squares
+                        initial = Square(row, col)
+                        final = Square(possible_move_row, col)
+                        # create a new move
+                        move = Move(initial, final)
+                        piece.add_move(move)
 
         def knight_moves():
             # 8 possible moves
