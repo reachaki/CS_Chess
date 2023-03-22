@@ -175,14 +175,15 @@ class Board:
         # Bishops
         self.squares[row_other][2] = Square(row_other, 2, Bishop(color))
         self.squares[row_other][5] = Square(row_other, 5, Bishop(color))
-        self.squares[4][3] = Square(5, 3, Bishop(color))
 
         # Rooks
         self.squares[row_other][0] = Square(row_other, 0, Rook(color))
         self.squares[row_other][7] = Square(row_other, 7, Rook(color))
+        self.squares[4][4] = Square(4, 4, Rook(color))
 
         # Queen
         self.squares[row_other][3] = Square(row_other, 3, Queen(color))
+        self.squares[3][3] = Square(3, 3, Queen(color))
 
         # King
         self.squares[row_other][4] = Square(row_other, 4, King(color))
