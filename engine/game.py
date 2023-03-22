@@ -48,6 +48,6 @@ class Game:
                 x = move.final.col * SQSIZE + SQSIZE // 2
                 y = move.final.row * SQSIZE + SQSIZE // 2
                 # radius
-                radius = SQSIZE // 6
+                radius = SQSIZE // 2
                 # draw circle
-                pygame.draw.circle(surface, color, (x, y), radius)
+                pygame.draw.circle(surface, color, (x, y), radius, 8)
