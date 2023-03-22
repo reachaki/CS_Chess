@@ -42,7 +42,7 @@ class Board:
                     break
 
             # diagonal moves
-            possible_move_row = row + piece.dr
+            possible_move_row = row + piece.dir
             possible_move_cols = [col-1, col+1]
             for possible_move_col in possible_move_cols:
                 if Square.in_range(possible_move_row, possible_move_col):
@@ -111,6 +111,7 @@ class Board:
         # Pawns
         for col in range(COLS):
             self.squares[row_pawn][col] = Square(row_pawn, col, Pawn(color))
+            self.squares[5][3] = Square(5, 3, Pawn(color))
 
         # Knights
         self.squares[row_other][1] = Square(row_other, 1, Knight(color))
