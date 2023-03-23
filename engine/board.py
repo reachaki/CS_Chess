@@ -12,6 +12,9 @@ class Board:
         self._add_piece('white')
         self._add_piece('black')
 
+    def move(self, piece, move):
+        pass
+
     def clac_moves(self, piece, row, col):
         '''
         calculate all the valid moves of a specific piece of a specific position
