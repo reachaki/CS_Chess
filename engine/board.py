@@ -15,6 +15,9 @@ class Board:
     def move(self, piece, move):
         pass
 
+    def valid_move(self, piece, move):
+        return move in piece.moves
+
     def clac_moves(self, piece, row, col):
         '''
         calculate all the valid moves of a specific piece of a specific position
