@@ -46,9 +46,6 @@ class Main:
                     clicked_col = dragger.mouseX // SQSIZE  # col = x
                     clicked_row = dragger.mouseY // SQSIZE  # row = y
 
-                    print(dragger.mouseX, clicked_col)
-                    print(dragger.mouseY, clicked_row)
-
                     # if clicked square has piece ?
                     if board.squares[clicked_row][clicked_col].has_piece():
                         piece = board.squares[clicked_row][clicked_col].piece
