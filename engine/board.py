@@ -10,8 +10,8 @@ class Board:
         self.squares = [[0, 0, 0, 0, 0, 0, 0, 0] for col in range(COLS)]
         self.last_move = None
         self._create()
-        self._add_piece('white')
-        self._add_piece('black')
+        self._add_pieces('white')
+        self._add_pieces('black')
 
     def move(self, piece, move):
         initial = move.initial
@@ -58,7 +58,7 @@ class Board:
                     # blocked
                     else:
                         break
-                    # not in range
+                # not in range
                 else:
                     break
 
@@ -183,7 +183,7 @@ class Board:
                 (-1, 1),  # up-right
                 (-1, -1),  # up-left
                 (1, 1),  # down-right
-                (1, -1)  # down-left
+                (1, -1),  # down-left
             ])
 
         elif isinstance(piece, Rook):
@@ -191,7 +191,7 @@ class Board:
                 (-1, 0),  # up
                 (1, 0),  # down
                 (0, -1),  # left
-                (0, 1)  # right
+                (0, 1),  # right
             ])
 
         elif isinstance(piece, Queen):
@@ -203,7 +203,7 @@ class Board:
                 (-1, 0),  # up
                 (1, 0),  # down
                 (0, -1),  # left
-                (0, 1)  # right
+                (0, 1),  # right
             ])
 
         elif isinstance(piece, King):
@@ -215,7 +215,7 @@ class Board:
             for col in range(COLS):
                 self.squares[row][col] = Square(row, col)
 
-    def _add_piece(self, color):
+    def _add_pieces(self, color):
         row_pawn, row_other = (6, 7) if color == "white" else (1, 0)
 
         # Pawns

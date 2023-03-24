@@ -49,13 +49,15 @@ class Main:
                     # if clicked square has piece ?
                     if board.squares[clicked_row][clicked_col].has_piece():
                         piece = board.squares[clicked_row][clicked_col].piece
-                        board.clac_moves(piece, clicked_row, clicked_col)
-                        dragger.save_initial(event.pos)
-                        dragger.drag_piece(piece)
-                        # show method
-                        game.show_bg(screen)
-                        game.show_moves(screen)
-                        game.show_pieces(screen)
+                        # valid piece (color)?
+                        if piece.color == game.next_player:
+                            board.clac_moves(piece, clicked_row, clicked_col)
+                            dragger.save_initial(event.pos)
+                            dragger.drag_piece(piece)
+                            # show method
+                            game.show_bg(screen)
+                            game.show_moves(screen)
+                            game.show_pieces(screen)
 
                 # mouse motion
                 elif event.type == pygame.MOUSEMOTION:
@@ -73,13 +75,13 @@ class Main:
                     if dragger.dragging:
                         dragger.update_mouse(event.pos)
 
-                        release_row = dragger.mouseY // SQSIZE
-                        release_col = dragger.mouseX // SQSIZE
+                        released_row = dragger.mouseY // SQSIZE
+                        released_col = dragger.mouseX // SQSIZE
 
                         # create possible move
                         initial = Square(dragger.initial_row,
                                          dragger.initial_col)
-                        final = Square(release_row, release_col)
+                        final = Square(released_row, released_col)
                         move = Move(initial, final)
 
                         # valid move?
@@ -88,6 +90,9 @@ class Main:
                             # show methods
                             game.show_bg(screen)
                             game.show_pieces(screen)
+
+                            # next turn
+                            game.next_turn()
 
                     dragger.undrag_piece()
 
