@@ -22,7 +22,7 @@ class Board:
         self.squares[final.row][final.col].piece = piece
 
         # move
-        piece.move = None
+        piece.moved = True
 
         # clear valid moves
         piece.clear_moves()
