@@ -17,9 +17,9 @@ class Game:
             for col in range(COLS):
                 if (row + col) % 2 == 0:
                     # cream (236,236,215)
-                    color = (236, 236, 215)
+                    color = (219, 229, 232)
                 else:
-                    color = (77, 109, 146)  # blue (77,109,146)
+                    color = (141, 170, 188)  # blue (77,109,146)
                 rect = (col * SQSIZE, row * SQSIZE, SQSIZE, SQSIZE)
                 pygame.draw.rect(surface, color, rect)
 
@@ -43,8 +43,8 @@ class Game:
             # loop all valid moves
             for move in piece.moves:
                 # color with lower opacity
-                color = (213, 213, 194) if (
-                    move.final.row + move.final.col) % 2 == 0 else (69, 98, 132)
+                color = (193, 204, 207) if (
+                    move.final.row + move.final.col) % 2 == 0 else (105, 136, 156)
                 # position
                 x = move.final.col * SQSIZE + SQSIZE // 2
                 y = move.final.row * SQSIZE + SQSIZE // 2
@@ -60,8 +60,8 @@ class Game:
 
             for pos in [initial, final]:
                 # color
-                color = (233, 247, 116) if (
-                    pos.row + pos.col) % 2 == 0 else (172, 195, 51)
+                color = (170, 225, 237) if (
+                    pos.row + pos.col) % 2 == 0 else (135, 198, 218)
                 # rect
                 rect = (pos.col * SQSIZE, pos.row * SQSIZE, SQSIZE, SQSIZE)
                 # blit
