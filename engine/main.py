@@ -67,6 +67,7 @@ class Main:
                         game.show_bg(screen)
                         # show methods
                         game.show_moves(screen)
+                        game.show_last_move(screen)
                         game.show_pieces(screen)
                         dragger.update_blit(screen)
 
