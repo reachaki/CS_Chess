@@ -20,6 +20,7 @@ class Config:
     def change_theme(self):
         self.idx += 1
         self.idx %= len(self.themes)
+        self.theme = self.themes[self.idx]
 
     def _add_themes(self):
         pass
