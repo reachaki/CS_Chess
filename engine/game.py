@@ -71,12 +71,12 @@ class Game:
     def show_hover(self, surface):
         if self.hovered_sqr:
             # color
-            color = (180, 180, 180)
+            color = (200, 200, 200)
             # rect
             rect = (self.hovered_sqr.col * SQSIZE,
                     self.hovered_sqr.row * SQSIZE, SQSIZE, SQSIZE)
             # blit
-            pygame.draw.rect(surface, color, rect, width=1)
+            pygame.draw.rect(surface, color, rect, width=2)
 
     # other methods
 
