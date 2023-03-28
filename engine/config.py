@@ -23,9 +23,12 @@ class Config:
         self.theme = self.themes[self.idx]
 
     def _add_themes(self):
-        green = Theme()
-        blue = Theme()
         red = Theme()
         orange = Theme()
-        brown = Theme()
+        green = Theme()
+        blue = Theme()
         purple = Theme()
+        brown = Theme()
+        ice = Theme()
+
+        self.theme = [red, orange, green, blue, purple, brown, ice]
