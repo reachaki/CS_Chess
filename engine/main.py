@@ -6,7 +6,6 @@ from const import *
 from game import Game
 from square import Square
 from move import Move
-from config import Config
 
 
 class Main:
@@ -120,7 +119,7 @@ class Main:
                     # change themes
                     if event.key == pygame.K_t:
                         print('theme change')
-                        game.notify_effect()
+                        game.change_effect()
                         game.change_theme()
 
                 # quit
