@@ -2,6 +2,7 @@ import pygame
 from const import *
 from board import Board
 from dragger import Dragger
+from config import Config
 
 
 class Game:
@@ -11,17 +12,20 @@ class Game:
         self.hovered_sqr = None
         self.board = Board()
         self.dragger = Dragger()
+        self.config = Config()
 
     # show methods
     def show_bg(self, surface):
+        theme = self.config.theme
+
         for row in range(ROWS):
             for col in range(COLS):
-                if (row + col) % 2 == 0:
-                    # cream (236,236,215)
-                    color = (219, 229, 232)
-                else:
-                    color = (141, 170, 188)  # blue (77,109,146)
+                # color
+                color = theme.bg.light if (
+                    row + col) % 2 == 0 else theme.bg.dark
+                # rect
                 rect = (col * SQSIZE, row * SQSIZE, SQSIZE, SQSIZE)
+                # blit
                 pygame.draw.rect(surface, color, rect)
 
     def show_pieces(self, surface):
