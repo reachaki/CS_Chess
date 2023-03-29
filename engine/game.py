@@ -43,13 +43,14 @@ class Game:
                         surface.blit(img, piece.texture_rect)
 
     def show_moves(self, surface):
+        theme = self.config.theme
         if self.dragger.dragging:
             piece = self.dragger.piece
             # loop all valid moves
             for move in piece.moves:
                 # color with lower opacity
-                color = (193, 204, 207) if (
-                    move.final.row + move.final.col) % 2 == 0 else (105, 136, 156)
+                color = theme.moves.light if (
+                    move.final.row + move.final.col) % 2 == 0 else theme.moves.dark
                 # position
                 x = move.final.col * SQSIZE + SQSIZE // 2
                 y = move.final.row * SQSIZE + SQSIZE // 2
@@ -59,14 +60,15 @@ class Game:
                 pygame.draw.circle(surface, color, (x, y), radius, 8)
 
     def show_last_move(self, surface):
+        theme = self.config.theme
         if self.board.last_move:
             initial = self.board.last_move.initial
             final = self.board.last_move.final
 
             for pos in [initial, final]:
                 # color
-                color = (170, 225, 237) if (
-                    pos.row + pos.col) % 2 == 0 else (135, 198, 218)
+                color = theme.trace.light if (
+                    pos.row + pos.col) % 2 == 0 else theme.trace.dark
                 # rect
                 rect = (pos.col * SQSIZE, pos.row * SQSIZE, SQSIZE, SQSIZE)
                 # blit
@@ -75,12 +77,12 @@ class Game:
     def show_hover(self, surface):
         if self.hovered_sqr:
             # color
-            color = (200, 200, 200)
+            color = (255, 255, 255)
             # rect
             rect = (self.hovered_sqr.col * SQSIZE,
                     self.hovered_sqr.row * SQSIZE, SQSIZE, SQSIZE)
             # blit
-            pygame.draw.rect(surface, color, rect, width=2)
+            pygame.draw.rect(surface, color, rect, width=2.5)
 
     # other methods
 
