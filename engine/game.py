@@ -47,7 +47,7 @@ class Game:
                     # label
                     lbl = self.config.font.render(
                         Square.get_alphacol(col), 10, color)
-                    lbl_pos = (col * SQSIZE + SQSIZE - 20, HEIGHT - 25)
+                    lbl_pos = (col * SQSIZE + SQSIZE - 20, HEIGHT - 20)
                     # blit
                     surface.blit(lbl, lbl_pos)
 
