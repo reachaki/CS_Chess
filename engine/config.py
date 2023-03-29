@@ -36,4 +36,4 @@ class Config:
         ice = Theme((216, 228, 231), (112, 149, 171), (151, 218, 234),
                     (106, 185, 209), (196, 206, 209), (110, 143, 161))
 
-        self.theme = [brown, red, green, blue, purple, ice]
+        self.themes = [brown, red, green, blue, purple, ice]

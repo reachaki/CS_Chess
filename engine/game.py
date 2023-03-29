@@ -82,7 +82,7 @@ class Game:
             rect = (self.hovered_sqr.col * SQSIZE,
                     self.hovered_sqr.row * SQSIZE, SQSIZE, SQSIZE)
             # blit
-            pygame.draw.rect(surface, color, rect, width=2.5)
+            pygame.draw.rect(surface, color, rect, width=2)
 
     # other methods
 
