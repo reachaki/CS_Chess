@@ -16,6 +16,9 @@ class Config:
             os.path.join('assets/sounds/move.wav'))
         self.capture_sound = Sound(
             os.path.join('assets/sounds/capture.wav'))
+        self.notify_sound = Sound(
+            os.path.join('assets/sounds/notify.wav')
+        )
 
     def change_theme(self):
         self.idx += 1
