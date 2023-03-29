@@ -42,11 +42,12 @@ class Game:
                 # col coordinates
                 if row == 7:
                     # color
-                    color = theme.bg.dark if row % 2 == 0 else theme.bg.light
+                    color = theme.bg.dark if (
+                        row + col) % 2 == 0 else theme.bg.light
                     # label
                     lbl = self.config.font.render(
                         Square.get_alphacol(col), 10, color)
-                    lbl_pos = (col * SQSIZE + SQSIZE - 20, HEIGHT - 20)
+                    lbl_pos = (col * SQSIZE + SQSIZE - 20, HEIGHT - 25)
                     # blit
                     surface.blit(lbl, lbl_pos)
 
