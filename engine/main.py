@@ -47,6 +47,7 @@ class Main:
 
                     clicked_col = dragger.mouseX // SQSIZE  # col = x
                     clicked_row = dragger.mouseY // SQSIZE  # row = y
+                    print(str(clicked_row), str(clicked_col))
 
                     # if clicked square has piece ?
                     if board.squares[clicked_row][clicked_col].has_piece():
@@ -110,9 +111,9 @@ class Main:
 
                 # key press
                 elif event.type == pygame.KEYDOWN:
-
                     # change themes
-                    if event.type == pygame.K_t:
+                    if event.key == pygame.K_t:
+                        print('theme change')
                         game.change_theme()
 
                 # quit
