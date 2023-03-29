@@ -94,3 +94,6 @@ class Game:
 
     def change_theme(self):
         self.config.change_theme()
+
+    def sound_effect(self, capture=False):
+        pass
