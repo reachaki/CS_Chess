@@ -6,6 +6,7 @@ from const import *
 from game import Game
 from square import Square
 from move import Move
+from config import Config
 
 
 class Main:
@@ -97,7 +98,12 @@ class Main:
 
                         # valid move?
                         if board.valid_move(dragger.piece, move):
+                            captured = board.squares[released_row][released_col].has_piece(
+                            )
+
                             board.move(dragger.piece, move)
+                            # sounds
+                            game.play_sound(captured)
                             # show methods
                             game.show_bg(screen)
                             game.show_last_move(screen)
@@ -114,6 +120,7 @@ class Main:
                     # change themes
                     if event.key == pygame.K_t:
                         print('theme change')
+                        game.notify_effect()
                         game.change_theme()
 
                 # quit
