@@ -122,6 +122,9 @@ class Main:
                         print('theme change')
                         game.change_effect()
                         game.change_theme()
+                    # reset
+                    if event.key == pygame.K_r:
+                        game.reset()
 
                 # quit
                 elif event.type == pygame.QUIT:
