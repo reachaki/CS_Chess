@@ -126,3 +126,6 @@ class Game:
 
     def change_effect(self):
         self.config.change_sound.play()
+
+    def reset(self):
+        self.__init__()
