@@ -125,6 +125,7 @@ class Main:
                     # reset
                     if event.key == pygame.K_r:
                         game.reset()
+                        # add sound effect
                         game = self.game
                         board = self.game.board
                         dragger = self.game.dragger
