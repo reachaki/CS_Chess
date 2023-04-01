@@ -37,6 +37,10 @@ class Board:
     def valid_move(self, piece, move):
         return move in piece.moves
 
+    def check_promotion(self, piece, final):
+        if final.row == 0 or final.row == 7:
+            pass
+
     def clac_moves(self, piece, row, col):
         '''
         calculate all the valid moves of a specific piece of a specific position
