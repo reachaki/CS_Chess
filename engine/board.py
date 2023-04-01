@@ -202,6 +202,10 @@ class Board:
                                 left_rook.add_move(move)
 
                                 # king move
+                                initial = Square(row, col)
+                                final = Square(row, 2)
+                                move = Move(initial, final)
+                                piece.add_move(move)
 
                 # king castling
 
