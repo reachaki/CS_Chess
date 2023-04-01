@@ -188,7 +188,7 @@ class Board:
             # castling moves
             if not piece.moved:
                 # queen castling
-                left_rook = self.squares[row][0]  # .piece
+                left_rook = self.squares[row][0].piece
                 if isinstance(left_rook, Rook):
                     if not left_rook.moved:
                         for colm in range(1, 4):
@@ -213,7 +213,7 @@ class Board:
                                 piece.add_move(move)
 
                 # king castling
-                right_rook = self.squares[row][7]  # .piece
+                right_rook = self.squares[row][7].piece
                 if isinstance(right_rook, Rook):
                     if not right_rook.moved:
                         for colm in range(5, 7):
