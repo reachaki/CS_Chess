@@ -25,6 +25,8 @@ class Board:
         if isinstance(piece, Pawn):
             self.check_promotion(piece, final)
 
+        # castling
+
         # move
         piece.moved = True
 
@@ -41,6 +43,9 @@ class Board:
         if final.row == 0 or final.row == 7:
             self.squares[final.row][final.col].piece = Queen(piece.color)
             print(str(Square.get_alphacol(final.col))+str(ROWS-final.col)+'=Q')
+
+    def castling(self, inital, final):
+        pass
 
     def clac_moves(self, piece, row, col):
         '''
