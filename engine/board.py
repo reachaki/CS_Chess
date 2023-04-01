@@ -181,10 +181,20 @@ class Board:
                         piece.add_move(move)
 
             # castling moves
+            if not piece.moved:
+                # queen castling
+                left_rook = self.squares[row][0]
+                if isinstance(left_rook, Rook):
+                    if not left_rook.moved:
+                        for colm in range(1, 4):
+                            # castling is impossible // obstruction
+                            if self.squares[row][c].has_piece():
+                                break
 
-            # queen castling
+                            if colm == 3:
+                                pass
 
-            # king castling
+                # king castling
 
         if isinstance(piece, Pawn):
             pawn_moves()
