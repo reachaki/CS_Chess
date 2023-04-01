@@ -183,7 +183,7 @@ class Board:
             # castling moves
             if not piece.moved:
                 # queen castling
-                left_rook = self.squares[row][0]
+                left_rook = self.squares[row][0]  # .piece
                 if isinstance(left_rook, Rook):
                     if not left_rook.moved:
                         for colm in range(1, 4):
@@ -208,27 +208,27 @@ class Board:
                                 piece.add_move(move)
 
                 # king castling
-                right_rook = self.squares[row][0]
+                right_rook = self.squares[row][7]  # .piece
                 if isinstance(right_rook, Rook):
                     if not right_rook.moved:
-                        for colm in range(1, 4):
+                        for colm in range(5, 7):
                             # castling is impossible // obstruction
                             if self.squares[row][colm].has_piece():
                                 break
 
-                            if colm == 3:
+                            if colm == 6:
                                 # adds right rook to king
                                 piece.right_rook = right_rook
 
                                 # rook move
-                                initial = Square(row, 0)
-                                final = Square(row, 3)
+                                initial = Square(row, 7)
+                                final = Square(row, 5)
                                 move = Move(initial, final)
                                 right_rook.add_move(move)
 
                                 # king move
                                 initial = Square(row, col)
-                                final = Square(row, 2)
+                                final = Square(row, 6)
                                 move = Move(initial, final)
                                 piece.add_move(move)
 
