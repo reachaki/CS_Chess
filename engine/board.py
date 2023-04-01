@@ -188,11 +188,20 @@ class Board:
                     if not left_rook.moved:
                         for colm in range(1, 4):
                             # castling is impossible // obstruction
-                            if self.squares[row][c].has_piece():
+                            if self.squares[row][colm].has_piece():
                                 break
 
                             if colm == 3:
-                                pass
+                                # adds left rook to king
+                                piece.left_rook = left_rook
+
+                                # rook move
+                                initial = Square(row, 0)
+                                final = Square(row, 3)
+                                move = Move(initial, final)
+                                left_rook.add_move(move)
+
+                                # king move
 
                 # king castling
 
