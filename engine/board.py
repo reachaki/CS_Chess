@@ -208,6 +208,29 @@ class Board:
                                 piece.add_move(move)
 
                 # king castling
+                right_rook = self.squares[row][0]
+                if isinstance(right_rook, Rook):
+                    if not right_rook.moved:
+                        for colm in range(1, 4):
+                            # castling is impossible // obstruction
+                            if self.squares[row][colm].has_piece():
+                                break
+
+                            if colm == 3:
+                                # adds right rook to king
+                                piece.right_rook = right_rook
+
+                                # rook move
+                                initial = Square(row, 0)
+                                final = Square(row, 3)
+                                move = Move(initial, final)
+                                right_rook.add_move(move)
+
+                                # king move
+                                initial = Square(row, col)
+                                final = Square(row, 2)
+                                move = Move(initial, final)
+                                piece.add_move(move)
 
         if isinstance(piece, Pawn):
             pawn_moves()
