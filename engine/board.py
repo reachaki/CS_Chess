@@ -45,7 +45,7 @@ class Board:
             print(str(Square.get_alphacol(final.col))+str(ROWS-final.col)+'=Q')
 
     def castling(self, inital, final):
-        pass
+        return abs(inital.col - final.col) == 2
 
     def clac_moves(self, piece, row, col):
         '''
