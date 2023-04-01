@@ -47,8 +47,6 @@ class Main:
 
                     clicked_col = dragger.mouseX // SQSIZE  # col = x
                     clicked_row = dragger.mouseY // SQSIZE  # row = y
-                    print(
-                        str(Square.get_alphacol(clicked_col))+str(ROWS-clicked_row))
 
                     # if clicked square has piece ?
                     if board.squares[clicked_row][clicked_col].has_piece():
@@ -109,6 +107,8 @@ class Main:
                             game.show_last_move(screen)
                             game.show_moves(screen)
                             game.show_pieces(screen)
+                            print(str(Square.get_alphacol(final.col)) +
+                                  str(ROWS-final.row))
 
                             # next turn
                             game.next_turn()
