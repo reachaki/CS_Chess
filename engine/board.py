@@ -40,6 +40,7 @@ class Board:
     def check_promotion(self, piece, final):
         if final.row == 0 or final.row == 7:
             self.squares[final.row][final.col].piece = Queen(piece.color)
+            print(str(Square.get_alphacol(final.col))+str(ROWS-final.col)+'=Q')
 
     def clac_moves(self, piece, row, col):
         '''
