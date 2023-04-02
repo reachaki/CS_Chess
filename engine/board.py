@@ -71,7 +71,7 @@ class Board:
 
         return False
 
-    def clac_moves(self, piece, row, col):
+    def clac_moves(self, piece, row, col, bool=True):
         '''
         calculate all the valid moves of a specific piece of a specific position
         '''
