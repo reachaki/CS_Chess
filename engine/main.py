@@ -107,9 +107,9 @@ class Main:
                             game.show_last_move(screen)
                             game.show_moves(screen)
                             game.show_pieces(screen)
-                            print(str(Square.get_alphacol(final.col)) +
-                                  str(ROWS-final.row))
-
+                            if piece.moved == True:
+                                print(str(Square.get_alphacol(final.col)) +
+                                      str(ROWS-final.row))
                             # next turn
                             game.next_turn()
 
