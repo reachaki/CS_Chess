@@ -151,8 +151,13 @@ class Board:
                                        possible_move_col, final_piece)
                         # create new move
                         move = Move(initial, final)
-                        # append new valid move
-                        piece.add_move(move)
+                        # check potential checks
+                        if bool:
+                            if not self.in_check(piece, move):
+                                # append new move
+                                piece.add_move(move)
+                        else:
+                            piece.add_move(move)
 
         def strightline_moves(incrs):
             for incr in incrs:
