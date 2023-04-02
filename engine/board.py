@@ -91,8 +91,10 @@ class Board:
                         final = Square(possible_move_row, col)
                         # create a new move
                         move = Move(initial, final)
-                        # append new move
-                        piece.add_move(move)
+                        # check potential checks
+                        if not self.in_check(piece, move):
+                            # append new move
+                            piece.add_move(move)
                     # blocked
                     else:
                         break
