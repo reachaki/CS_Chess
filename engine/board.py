@@ -179,13 +179,23 @@ class Board:
 
                         # empty = continue looping
                         if self.squares[possible_move_row][possible_move_col].isempty():
-                            # append new move
-                            piece.add_move(move)
+                            # check potential checks
+                            if bool:
+                                if not self.in_check(piece, move):
+                                    # append new move
+                                    piece.add_move(move)
+                            else:
+                                piece.add_move(move)
 
                         # has enemy piece = add move + break
                         elif self.squares[possible_move_row][possible_move_col].has_enemy_piece(piece.color):
-                            # append new move
-                            piece.add_move(move)
+                            # check potential checks
+                            if bool:
+                                if not self.in_check(piece, move):
+                                    # append new move
+                                    piece.add_move(move)
+                            else:
+                                piece.add_move(move)
                             break
 
                         # has team piece = break
