@@ -2,6 +2,7 @@ from const import *
 from square import Square
 from piece import *
 from move import Move
+import copy
 
 
 class Board:
@@ -53,7 +54,7 @@ class Board:
         return abs(inital.col - final.col) == 2
 
     def in_check(self, piece, move):
-        pass
+        temp_board = copy.deepcopy(self)
 
     def clac_moves(self, piece, row, col):
         '''
