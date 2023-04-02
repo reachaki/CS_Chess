@@ -54,7 +54,22 @@ class Board:
         return abs(inital.col - final.col) == 2
 
     def in_check(self, piece, move):
+        temp_piece = copy.deepcopy(piece)
         temp_board = copy.deepcopy(self)
+        temp_board.move(temp_piece, move)
+
+        for row in range(ROWS):
+            for col in range(COLS):
+                if temp_board.squares[row][col].has_emempy_piece(piece.color):
+                    # p is peice,
+                    p = temp_board.squares[row][col].piece
+                    temp_board.clac_moves(p, row, col)
+                    # m is move
+                    for m in p.moves:
+                        if isinstance(m.final.piece, King):
+                            return True
+
+        return False
 
     def clac_moves(self, piece, row, col):
         '''
