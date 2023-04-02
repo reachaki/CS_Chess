@@ -138,7 +138,9 @@ class Board:
                     if Square.in_range(possible_move_row, possible_move_col):
                         # create squares of the possible new move
                         initial = Square(row, col)
-                        final = Square(possible_move_row, possible_move_col)
+                        final_piece = self.squares[possible_move_row][possible_move_col].piece
+                        final = Square(possible_move_row,
+                                       possible_move_col, final_piece)
                         # crete new move
                         move = Move(initial, final)
 
@@ -148,13 +150,13 @@ class Board:
                             piece.add_move(move)
 
                         # has enemy piece = add move + break
-                        if self.squares[possible_move_row][possible_move_col].has_enemy_piece(piece.color):
+                        elif self.squares[possible_move_row][possible_move_col].has_enemy_piece(piece.color):
                             # append new move
                             piece.add_move(move)
                             break
 
                         # has team piece = break
-                        if self.squares[possible_move_row][possible_move_col].has_team_piece(piece.color):
+                        elif self.squares[possible_move_row][possible_move_col].has_team_piece(piece.color):
                             break
 
                     # not in range
