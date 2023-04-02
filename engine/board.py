@@ -60,7 +60,7 @@ class Board:
 
         for row in range(ROWS):
             for col in range(COLS):
-                if temp_board.squares[row][col].has_emempy_piece(piece.color):
+                if temp_board.squares[row][col].has_enemy_piece(piece.color):
                     # p is peice,
                     p = temp_board.squares[row][col].piece
                     temp_board.clac_moves(p, row, col)
