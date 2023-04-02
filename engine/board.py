@@ -92,8 +92,11 @@ class Board:
                         # create a new move
                         move = Move(initial, final)
                         # check potential checks
-                        if not self.in_check(piece, move):
-                            # append new move
+                        if bool:
+                            if not self.in_check(piece, move):
+                                # append new move
+                                piece.add_move(move)
+                        else:
                             piece.add_move(move)
                     # blocked
                     else:
