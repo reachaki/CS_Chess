@@ -120,7 +120,9 @@ class Board:
                     if self.squares[possible_move_row][possible_move_col].isempty_or_enemy(piece.color):
                         # create squares of the new move
                         initial = Square(row, col)
-                        final = Square(possible_move_row, possible_move_col)
+                        final_piece = self.squares[possible_move_row][possible_move_col].piece
+                        final = Square(possible_move_row,
+                                       possible_move_col, final_piece)
                         # create new move
                         move = Move(initial, final)
                         # append new valid move
