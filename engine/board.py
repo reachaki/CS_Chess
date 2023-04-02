@@ -61,7 +61,7 @@ class Board:
         for row in range(ROWS):
             for col in range(COLS):
                 if temp_board.squares[row][col].has_enemy_piece(piece.color):
-                    # p is peice,
+                    # p is piece,
                     p = temp_board.squares[row][col].piece
                     temp_board.clac_moves(p, row, col, bool=False)
                     # m is move
@@ -129,14 +129,14 @@ class Board:
         def knight_moves():
             # 8 possible moves
             possible_moves = [
-                (row+1, col-2),
-                (row+2, col-1),
-                (row+2, col+1),
-                (row+1, col+2),
-                (row-1, col+2),
                 (row-2, col+1),
+                (row-1, col+2),
+                (row+1, col+2),
+                (row+2, col+1),
+                (row+2, col-1),
+                (row+1, col-2),
+                (row-1, col-2),
                 (row-2, col-1),
-                (row-1, col-2)
             ]
 
             for possible_move in possible_moves:
@@ -151,6 +151,7 @@ class Board:
                                        possible_move_col, final_piece)
                         # create new move
                         move = Move(initial, final)
+
                         # check potential checks
                         if bool:
                             if not self.in_check(piece, move):
