@@ -63,7 +63,7 @@ class Board:
                 if temp_board.squares[row][col].has_enemy_piece(piece.color):
                     # p is peice,
                     p = temp_board.squares[row][col].piece
-                    temp_board.clac_moves(p, row, col)
+                    temp_board.clac_moves(p, row, col, bool=False)
                     # m is move
                     for m in p.moves:
                         if isinstance(m.final.piece, King):
