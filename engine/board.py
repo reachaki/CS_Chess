@@ -234,8 +234,14 @@ class Board:
                         final = Square(possible_move_row, possible_move_col)
                         # create new move
                         move = Move(initial, final)
-                        # append new valid move
-                        piece.add_move(move)
+                        if bool:
+                            if not self.in_check(piece, move):
+                                # append new move
+                                piece.add_move(move)
+                            else:
+                                break
+                        else:
+                            piece.add_move(move)
 
             # castling moves
             if not piece.moved:
