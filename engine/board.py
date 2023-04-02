@@ -152,7 +152,7 @@ class Board:
                         # create new move
                         move = Move(initial, final)
 
-                        # check potential checks
+                        # check potencial checks
                         if bool:
                             if not self.in_check(piece, move):
                                 # append new move
@@ -160,9 +160,10 @@ class Board:
                             else:
                                 break
                         else:
+                            # append new move
                             piece.add_move(move)
 
-        def strightline_moves(incrs):
+        def straightline_moves(incrs):
             for incr in incrs:
                 row_incr, col_incr = incr
                 possible_move_row = row + row_incr
@@ -175,27 +176,29 @@ class Board:
                         final_piece = self.squares[possible_move_row][possible_move_col].piece
                         final = Square(possible_move_row,
                                        possible_move_col, final_piece)
-                        # crete new move
+                        # create a possible new move
                         move = Move(initial, final)
 
                         # empty = continue looping
                         if self.squares[possible_move_row][possible_move_col].isempty():
-                            # check potential checks
+                            # check potencial checks
                             if bool:
                                 if not self.in_check(piece, move):
                                     # append new move
                                     piece.add_move(move)
                             else:
+                                # append new move
                                 piece.add_move(move)
 
                         # has enemy piece = add move + break
                         elif self.squares[possible_move_row][possible_move_col].has_enemy_piece(piece.color):
-                            # check potential checks
+                            # check potencial checks
                             if bool:
                                 if not self.in_check(piece, move):
                                     # append new move
                                     piece.add_move(move)
                             else:
+                                # append new move
                                 piece.add_move(move)
                             break
 
@@ -207,7 +210,7 @@ class Board:
                     else:
                         break
 
-                    # incrementing increments
+                    # incrementing incrs
                     possible_move_row = possible_move_row + row_incr
                     possible_move_col = possible_move_col + col_incr
 
