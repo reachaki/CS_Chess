@@ -26,7 +26,7 @@ class Board:
         if isinstance(piece, Pawn):
             self.check_promotion(piece, final)
 
-        # castling
+        # king castling
         if isinstance(piece, King):
             if self.castling(initial, final):
                 diff = final.col - initial.col
