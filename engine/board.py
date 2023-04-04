@@ -140,7 +140,8 @@ class Board:
             ]
 
             for possible_move in possible_moves:
-                possible_move_row, possible_move_col = possible_move
+                possible_move_row = int(possible_move[0])
+                possible_move_col = int(possible_move[1])
 
                 if Square.in_range(possible_move_row, possible_move_col):
                     if self.squares[possible_move_row][possible_move_col].isempty_or_enemy(piece.color):
@@ -157,8 +158,6 @@ class Board:
                             if not self.in_check(piece, move):
                                 # append new move
                                 piece.add_move(move)
-                            else:
-                                break
                         else:
                             # append new move
                             piece.add_move(move)
