@@ -22,14 +22,13 @@ class Board:
         self.squares[initial.row][initial.col].piece = None
         self.squares[final.row][final.col].piece = piece
 
-        # en passant capture
-        diff = final.col - initial.col
-        if diff != 0 and self.squares[final.row][final.col].isempty:
-            # console board move update
-            self.squares[initial.row][initial.col+diff].piece = None
-            self.squares[final.row][final.col].piece = piece
-
         if isinstance(piece, Pawn):
+            # en passant capture
+            diff = final.col - initial.col
+            if diff != 0 and self.squares[final.row][final.col].isempty():
+                # console board move update
+                self.squares[initial.row][initial.col+diff].piece = None
+                self.squares[final.row][final.col].piece = piece
             # pawn en passant
             if self.en_passant(initial, final):
                 piece.en_passant = True
@@ -78,7 +77,7 @@ class Board:
                 if temp_board.squares[row][col].has_enemy_piece(piece.color):
                     # p is piece,
                     p = temp_board.squares[row][col].piece
-                    temp_board.clac_moves(p, row, col, bool=False)
+                    temp_board.calc_moves(p, row, col, bool=False)
                     # m is move
                     for m in p.moves:
                         if isinstance(m.final.piece, King):
@@ -86,7 +85,7 @@ class Board:
 
         return False
 
-    def clac_moves(self, piece, row, col, bool=True):
+    def calc_moves(self, piece, row, col, bool=True):
         '''
         calculate all the valid moves of a specific piece of a specific position
         '''
@@ -196,8 +195,7 @@ class Board:
             ]
 
             for possible_move in possible_moves:
-                possible_move_row = int(possible_move[0])
-                possible_move_col = int(possible_move[1])
+                possible_move_row, possible_move_col = possible_move
 
                 if Square.in_range(possible_move_row, possible_move_col):
                     if self.squares[possible_move_row][possible_move_col].isempty_or_enemy(piece.color):
@@ -298,6 +296,8 @@ class Board:
                             if not self.in_check(piece, move):
                                 # append new move
                                 piece.add_move(move)
+                            else:
+                                break
                         else:
                             # append new move
                             piece.add_move(move)
