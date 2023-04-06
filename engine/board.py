@@ -2,6 +2,7 @@ from const import *
 from square import Square
 from piece import *
 from move import Move
+from sound import Sound
 import copy
 
 
@@ -31,6 +32,7 @@ class Board:
                 # console board move update
                 self.squares[initial.row][initial.col+diff].piece = None
                 self.squares[final.row][final.col].piece = piece
+                sound = Sound
             # pawn en passant
             if self.en_passant(initial, final):
                 piece.en_passant = True
