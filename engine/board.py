@@ -25,7 +25,8 @@ class Board:
         if isinstance(piece, Pawn):
             # pawn en passant
             if self.en_passant(initial, final):
-                pass
+                piece.en_passant = True
+                print("pawn moved 2 squares")
 
             # pawn promotion
             else:
@@ -59,7 +60,7 @@ class Board:
         return abs(inital.col - final.col) == 2
 
     def en_passant(self, initial, final):
-        return abs(initial.row - final.row)
+        return abs(initial.row - final.row) == 2
 
     def in_check(self, piece, move):
         temp_piece = copy.deepcopy(piece)
