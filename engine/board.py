@@ -22,6 +22,13 @@ class Board:
         self.squares[initial.row][initial.col].piece = None
         self.squares[final.row][final.col].piece = piece
 
+        # en passant capture
+        if self.en_passant_capture(self):
+            # console board move update
+            diff = final.col - initial.col
+            self.squares[initial.row][initial.col+diff].piece = None
+            self.squares[final.row][final.col].piece = piece
+
         if isinstance(piece, Pawn):
             # pawn en passant
             if self.en_passant(initial, final):
