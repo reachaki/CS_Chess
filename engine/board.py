@@ -58,6 +58,9 @@ class Board:
     def castling(self, inital, final):
         return abs(inital.col - final.col) == 2
 
+    def en_passant(self, initial, final):
+        return abs(initial.row - final.row)
+
     def in_check(self, piece, move):
         temp_piece = copy.deepcopy(piece)
         temp_board = copy.deepcopy(self)
