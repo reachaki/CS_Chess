@@ -23,9 +23,9 @@ class Board:
         self.squares[final.row][final.col].piece = piece
 
         # en passant capture
-        if self.en_passant_capture(self):
+        diff = final.col - initial.col
+        if diff != 0 and self.squares[final.row][final.col].isempty:
             # console board move update
-            diff = final.col - initial.col
             self.squares[initial.row][initial.col+diff].piece = None
             self.squares[final.row][final.col].piece = piece
 
