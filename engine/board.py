@@ -16,7 +16,7 @@ class Board:
         self._add_pieces('white')
         self._add_pieces('black')
 
-    def move(self, piece, move, checker=False):
+    def move(self, piece, move, verify=False):
         initial = move.initial
         final = move.final
 
@@ -33,7 +33,7 @@ class Board:
                 # console board move update
                 self.squares[initial.row][initial.col + diff].piece = None
                 self.squares[final.row][final.col].piece = piece
-                if not checker:
+                if not verify:
                     sound = Sound(os.path.join('assets/sounds/capture.wav'))
                     sound.play()
 
@@ -43,7 +43,7 @@ class Board:
 
         # king castling
         if isinstance(piece, King):
-            if self.castling(initial, final):
+            if self.castling(initial, final) and not verify:
                 diff = final.col - initial.col
                 rook = piece.left_rook if (diff < 0) else piece.right_rook
                 self.move(rook, rook.moves[-1])
@@ -83,7 +83,7 @@ class Board:
     def in_check(self, piece, move):
         temp_piece = copy.deepcopy(piece)
         temp_board = copy.deepcopy(self)
-        temp_board.move(temp_piece, move, checker=True)
+        temp_board.move(temp_piece, move, verify=True)
 
         for row in range(ROWS):
             for col in range(COLS):
