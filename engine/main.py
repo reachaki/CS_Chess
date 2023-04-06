@@ -102,7 +102,7 @@ class Main:
 
                             board.move(dragger.piece, move)
 
-                            board.set_false_en_passant()
+                            board.set_true_en_passant(dragger.piece)
 
                             # sounds
                             game.play_sound(captured)
