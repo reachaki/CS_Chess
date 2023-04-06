@@ -22,9 +22,14 @@ class Board:
         self.squares[initial.row][initial.col].piece = None
         self.squares[final.row][final.col].piece = piece
 
-        # pawn promotion
         if isinstance(piece, Pawn):
-            self.check_promotion(piece, final)
+            # pawn en passant
+            if self.en_passant(initial, final):
+                pass
+
+            # pawn promotion
+            else:
+                self.check_promotion(piece, final)
 
         # king castling
         if isinstance(piece, King):
