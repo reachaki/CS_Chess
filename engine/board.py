@@ -136,13 +136,26 @@ class Board:
 
             # en passant moves
             r = 3 if piece.color == 'white' else 4
+            fr = 2 if piece.color == 'white' else 5
             # left en passant
             if Square.in_range(piece.col-1) and piece.row == r:
                 if self.squares[row][col-1].has_enemy_piece(piece.color):
                     p = self.squares[row][col-1].piece
                     if isinstance(p, Pawn):
                         if p.en_passant:
-                            pass
+                            # create inital and final move squares
+                            initial = Square(row, col)
+                            final_piece = self.squares[row][col-1].piece
+                            final = Square(fr, col-1, final_piece)
+                            # create a new move
+                            move = Move(initial, final)
+                            # check potential checks
+                            if bool:
+                                if not self.in_check(piece, move):
+                                    # append new move
+                                    piece.add_move(move)
+                            else:
+                                piece.add_move(move)
 
         def knight_moves():
             # 8 possible moves
