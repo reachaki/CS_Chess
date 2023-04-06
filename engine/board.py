@@ -18,6 +18,8 @@ class Board:
         initial = move.initial
         final = move.final
 
+        en_passant_empty = self.squares[final.row][final.col].isempty()
+
         # console board move update
         self.squares[initial.row][initial.col].piece = None
         self.squares[final.row][final.col].piece = piece
@@ -25,7 +27,7 @@ class Board:
         if isinstance(piece, Pawn):
             # en passant capture
             diff = final.col - initial.col
-            if diff != 0 and self.squares[final.row][final.col].isempty():
+            if diff != 0 and en_passant_empty:
                 # console board move update
                 self.squares[initial.row][initial.col+diff].piece = None
                 self.squares[final.row][final.col].piece = piece
