@@ -31,10 +31,10 @@ class Board:
             diff = final.col - initial.col
             if diff != 0 and en_passant_empty:
                 # console board move update
-                self.squares[initial.row][initial.col+diff].piece = None
+                self.squares[initial.row][initial.col + diff].piece = None
                 self.squares[final.row][final.col].piece = piece
                 if not checker:
-                    sound = Sound(os.path.join('/assets/sounds/capture.wav'))
+                    sound = Sound(os.path.join('assets/sounds/capture.wav'))
                     sound.play()
             # pawn en passant
             if self.en_passant(initial, final):
