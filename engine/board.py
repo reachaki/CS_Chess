@@ -26,7 +26,6 @@ class Board:
             # pawn en passant
             if self.en_passant(initial, final):
                 piece.en_passant = True
-                print("pawn moved 2 squares")
 
             # pawn promotion
             else:
@@ -134,6 +133,16 @@ class Board:
                                 piece.add_move(move)
                         else:
                             piece.add_move(move)
+
+            # en passant moves
+            r = 3 if piece.color == 'white' else 4
+            # left en passant
+            if Square.in_range(piece.col-1) and piece.row == r:
+                if self.squares[row][col-1].has_enemy_piece(piece.color):
+                    p = self.squares[row][col-1].piece
+                    if isinstance(p, Pawn):
+                        if p.en_passant:
+                            pass
 
         def knight_moves():
             # 8 possible moves
