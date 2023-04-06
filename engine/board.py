@@ -16,7 +16,7 @@ class Board:
         self._add_pieces('white')
         self._add_pieces('black')
 
-    def move(self, piece, move):
+    def move(self, piece, move, checker=False):
         initial = move.initial
         final = move.final
 
@@ -33,8 +33,9 @@ class Board:
                 # console board move update
                 self.squares[initial.row][initial.col+diff].piece = None
                 self.squares[final.row][final.col].piece = piece
-                sound = Sound(os.path.join('/assets/sounds/capture.wav'))
-                sound.play()
+                if not checker:
+                    sound = Sound(os.path.join('/assets/sounds/capture.wav'))
+                    sound.play()
             # pawn en passant
             if self.en_passant(initial, final):
                 piece.en_passant = True
@@ -76,7 +77,7 @@ class Board:
     def in_check(self, piece, move):
         temp_piece = copy.deepcopy(piece)
         temp_board = copy.deepcopy(self)
-        temp_board.move(temp_piece, move)
+        temp_board.move(temp_piece, move, checker=True)
 
         for row in range(ROWS):
             for col in range(COLS):
