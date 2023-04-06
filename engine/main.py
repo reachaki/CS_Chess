@@ -101,6 +101,9 @@ class Main:
                             )
 
                             board.move(dragger.piece, move)
+
+                            board.set_false_en_passant()
+
                             # sounds
                             game.play_sound(captured)
                             # show methods
