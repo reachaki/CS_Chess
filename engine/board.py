@@ -145,8 +145,7 @@ class Board:
                         if p.en_passant:
                             # create inital and final move squares
                             initial = Square(row, col)
-                            final_piece = self.squares[row][col-1].piece
-                            final = Square(fr, col-1, final_piece)
+                            final = Square(fr, col-1, p)
                             # create a new move
                             move = Move(initial, final)
                             # check potential checks
