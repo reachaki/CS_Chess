@@ -1,4 +1,4 @@
-import pygame
+import pygame as py
 import os
 from sound import Sound
 from theme import Theme
@@ -11,7 +11,7 @@ class Config:
         self._add_themes()
         self.idx = 0
         self.theme = self.themes[self.idx]
-        self.font = pygame.font.SysFont('Gill Sans', 18, bold=True)
+        self.font = py.font.SysFont('Gill Sans', 18, bold=True)
         self.move_sound = Sound(
             os.path.join('assets/sounds/move.wav'))
         self.capture_sound = Sound(

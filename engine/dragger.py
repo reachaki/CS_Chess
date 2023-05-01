@@ -1,4 +1,4 @@
-import pygame
+import pygame as py
 from const import *
 
 
@@ -18,7 +18,7 @@ class Dragger:
         self.piece.set_texture(size=100)
         texture = self.piece.texture
         # img
-        img = pygame.image.load(texture)
+        img = py.image.load(texture)
         # rect
         img_center = (self.mouseX, self.mouseY)
         self.piece.texture_rect = img.get_rect(center=img_center)
