@@ -1,4 +1,4 @@
-import pygame
+import pygame as py
 from const import *
 from board import Board
 from dragger import Dragger
@@ -27,7 +27,7 @@ class Game:
                 # rect
                 rect = (col * SQSIZE, row * SQSIZE, SQSIZE, SQSIZE)
                 # blit
-                pygame.draw.rect(surface, color, rect)
+                py.draw.rect(surface, color, rect)
 
                 # row cooridnates
                 if col == 0:
@@ -60,7 +60,7 @@ class Game:
                     # all pieces except dragger piece
                     if piece is not self.dragger.piece:
                         piece.set_texture(size=80)
-                        img = pygame.image.load(piece.texture)
+                        img = py.image.load(piece.texture)
                         img_center = col * SQSIZE + SQSIZE // 2, row * SQSIZE + SQSIZE // 2
                         piece.texture_rect = img.get_rect(center=img_center)
                         surface.blit(img, piece.texture_rect)
@@ -80,7 +80,7 @@ class Game:
                 # radius
                 radius = SQSIZE // 2
                 # draw circle
-                pygame.draw.circle(surface, color, (x, y), radius, 8)
+                py.draw.circle(surface, color, (x, y), radius, 8)
 
     def show_last_move(self, surface):
         theme = self.config.theme
@@ -95,7 +95,7 @@ class Game:
                 # rect
                 rect = (pos.col * SQSIZE, pos.row * SQSIZE, SQSIZE, SQSIZE)
                 # blit
-                pygame.draw.rect(surface, color, rect)
+                py.draw.rect(surface, color, rect)
 
     def show_hover(self, surface):
         if self.hovered_sqr:
@@ -105,7 +105,7 @@ class Game:
             rect = (self.hovered_sqr.col * SQSIZE,
                     self.hovered_sqr.row * SQSIZE, SQSIZE, SQSIZE)
             # blit
-            pygame.draw.rect(surface, color, rect, width=2)
+            py.draw.rect(surface, color, rect, width=2)
 
     # other methods
 
