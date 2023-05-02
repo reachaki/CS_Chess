@@ -28,12 +28,16 @@ class Main:
         board = self.game.board         # Assigning the board object
         dragger = self.game.dragger     # Assigning the dragger object
 
-        while True:
-            # show methods
+        def show_method(interface):
             game.show_bg(interface)            # Show the game background on the interface
             game.show_last_move(interface)     # Show the last move on the interface
             game.show_moves(interface)         # Show the valid moves for the current piece on the interface
             game.show_pieces(interface)        # Show the chess pieces on the interface
+
+        while True:
+            # show methods
+            show_method(interface)
+            
             game.show_hover(interface)         # Show the hover effect on the interface
 
             if dragger.dragging:
@@ -58,10 +62,7 @@ class Main:
                             dragger.save_initial(event.pos)
                             dragger.drag_piece(piece)
                             # show method
-                            game.show_bg(interface)
-                            game.show_last_move(interface)
-                            game.show_moves(interface)
-                            game.show_pieces(interface)
+                            show_method(interface)
 
                 # mouse motion
                 elif event.type == py.MOUSEMOTION:
@@ -72,11 +73,8 @@ class Main:
 
                     if dragger.dragging:
                         dragger.update_mouse(event.pos)
-                        game.show_bg(interface)
                         # show methods
-                        game.show_last_move(interface)
-                        game.show_moves(interface)
-                        game.show_pieces(interface)
+                        show_method(interface)
                         game.show_hover(interface)
                         dragger.update_blit(interface)
 
@@ -107,10 +105,7 @@ class Main:
                             # sounds
                             game.play_sound(captured)
                             # show methods
-                            game.show_bg(interface)
-                            game.show_last_move(interface)
-                            game.show_moves(interface)
-                            game.show_pieces(interface)
+                            show_method(interface)
                             if piece.moved == True:
                                 print(str(Square.get_alphacol(final.col)) +
                                       str(ROWS-final.row))
