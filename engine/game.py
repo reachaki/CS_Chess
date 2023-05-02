@@ -112,8 +112,7 @@ class Game:
             # color
             color = (255, 255, 255)
             # rect
-            rect = (self.hovered_sqr.col * SQSIZE,
-                    self.hovered_sqr.row * SQSIZE, SQSIZE, SQSIZE)
+            rect = (self.hovered_sqr.col * SQSIZE, self.hovered_sqr.row * SQSIZE, SQSIZE, SQSIZE)
             # blit
             py.draw.rect(surface, color, rect, width=2)
 

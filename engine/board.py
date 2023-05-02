@@ -1,20 +1,21 @@
-from const import *
-from square import Square
-from piece import *
-from move import Move
-from sound import Sound
-import copy
-import os
+from const import *         # Importing constants from const.py file
+from square import Square   # Importing the Square class from square.py file
+from piece import *         # Importing all classes from piece.py file
+from move import Move       # Importing the Move class from move.py file
+from sound import Sound     # Importing the Sound class from sound.py file
+import copy                 # Importing the copy module
+import os                   # Importing the os module
 
 
 class Board:
 
     def __init__(self):
+        # Initialize the squares on the board as a 2D array of zeros
         self.squares = [[0, 0, 0, 0, 0, 0, 0, 0] for col in range(COLS)]
-        self.last_move = None
-        self._create()
-        self._add_pieces('white')
-        self._add_pieces('black')
+        self.last_move = None       # Initialize the last_move attribute as None
+        self._create()              # Create the initial board configuration
+        self._add_pieces('white')   # Add white pieces to the board
+        self._add_pieces('black')   # Add black pieces to the board
 
     def move(self, piece, move, verify=False):
         initial = move.initial
@@ -65,8 +66,8 @@ class Board:
             self.squares[final.row][final.col].piece = Queen(piece.color)
             print(str(Square.get_alphacol(final.col))+str(ROWS-final.col)+'=Q')
 
-    def castling(self, inital, final):
-        return abs(inital.col - final.col) == 2
+    def castling(self, initial, final):
+        return abs(initial.col - final.col) == 2
 
     def set_true_en_passant(self, piece):
 
@@ -90,7 +91,7 @@ class Board:
                 if temp_board.squares[row][col].has_enemy_piece(piece.color):
                     # p is piece,
                     p = temp_board.squares[row][col].piece
-                    temp_board.calc_moves(p, row, col, bool=False)
+                    temp_board.calc_moves(p, row, col, flag=False)
                     # m is move
                     for m in p.moves:
                         if isinstance(m.final.piece, King):
@@ -98,11 +99,8 @@ class Board:
 
         return False
 
-    def calc_moves(self, piece, row, col, bool=True):
-        '''
-        calculate all the valid moves of a specific piece of a specific position
-        '''
-
+    def calc_moves(self, piece, row, col, flag=True):
+        #calculate all the valid moves of a specific piece of a specific position
         def pawn_moves():
             # steps
             steps = 1 if piece.moved else 2
@@ -113,13 +111,13 @@ class Board:
             for possible_move_row in range(start, end, piece.dir):
                 if Square.in_range(possible_move_row):
                     if self.squares[possible_move_row][col].isempty():
-                        # create inital and final move squares
+                        # create initial and final move squares
                         initial = Square(row, col)
                         final = Square(possible_move_row, col)
                         # create a new move
                         move = Move(initial, final)
                         # check potential checks
-                        if bool:
+                        if flag:
                             if not self.in_check(piece, move):
                                 # append new move
                                 piece.add_move(move)
@@ -138,7 +136,7 @@ class Board:
             for possible_move_col in possible_move_cols:
                 if Square.in_range(possible_move_row, possible_move_col):
                     if self.squares[possible_move_row][possible_move_col].has_enemy_piece(piece.color):
-                        # create inital and final move squares
+                        # create initial and final move squares
                         initial = Square(row, col)
                         final_piece = self.squares[possible_move_row][possible_move_col].piece
                         final = Square(possible_move_row,
@@ -146,7 +144,7 @@ class Board:
                         # create a new move
                         move = Move(initial, final)
                         # check potential checks
-                        if bool:
+                        if flag:
                             if not self.in_check(piece, move):
                                 # append new move
                                 piece.add_move(move)
@@ -162,13 +160,13 @@ class Board:
                     p = self.squares[row][col-1].piece
                     if isinstance(p, Pawn):
                         if p.en_passant:
-                            # create inital and final move squares
+                            # create initial and final move squares
                             initial = Square(row, col)
                             final = Square(fr, col-1, p)
                             # create a new move
                             move = Move(initial, final)
                             # check potential checks
-                            if bool:
+                            if flag:
                                 if not self.in_check(piece, move):
                                     # append new move
                                     piece.add_move(move)
@@ -181,13 +179,13 @@ class Board:
                     p = self.squares[row][col+1].piece
                     if isinstance(p, Pawn):
                         if p.en_passant:
-                            # create inital and final move squares
+                            # create initial and final move squares
                             initial = Square(row, col)
                             final = Square(fr, col+1, p)
                             # create a new move
                             move = Move(initial, final)
                             # check potential checks
-                            if bool:
+                            if flag:
                                 if not self.in_check(piece, move):
                                     # append new move
                                     piece.add_move(move)
@@ -221,7 +219,7 @@ class Board:
                         move = Move(initial, final)
 
                         # check potencial checks
-                        if bool:
+                        if flag:
                             if not self.in_check(piece, move):
                                 # append new move
                                 piece.add_move(move)
@@ -248,7 +246,7 @@ class Board:
                         # empty = continue looping
                         if self.squares[possible_move_row][possible_move_col].isempty():
                             # check potencial checks
-                            if bool:
+                            if flag:
                                 if not self.in_check(piece, move):
                                     # append new move
                                     piece.add_move(move)
@@ -259,7 +257,7 @@ class Board:
                         # has enemy piece = add move + break
                         elif self.squares[possible_move_row][possible_move_col].has_enemy_piece(piece.color):
                             # check potencial checks
-                            if bool:
+                            if flag:
                                 if not self.in_check(piece, move):
                                     # append new move
                                     piece.add_move(move)
@@ -305,7 +303,7 @@ class Board:
                         # create new move
                         move = Move(initial, final)
                         # check potencial checks
-                        if bool:
+                        if flag:
                             if not self.in_check(piece, move):
                                 # append new move
                                 piece.add_move(move)
@@ -340,7 +338,7 @@ class Board:
                                 moveK = Move(initial, final)
 
                                 # check potencial checks
-                                if bool:
+                                if flag:
                                     if not self.in_check(piece, moveK) and not self.in_check(left_rook, moveR):
                                         # append new move to rook
                                         left_rook.add_move(moveR)
@@ -376,7 +374,7 @@ class Board:
                                 moveK = Move(initial, final)
 
                                 # check potencial checks
-                                if bool:
+                                if flag:
                                     if not self.in_check(piece, moveK) and not self.in_check(right_rook, moveR):
                                         # append new move to rook
                                         right_rook.add_move(moveR)
@@ -396,30 +394,30 @@ class Board:
 
         elif isinstance(piece, Bishop):
             straightline_moves([
-                (-1, 1),  # up-right
-                (-1, -1),  # up-left
-                (1, 1),  # down-right
-                (1, -1),  # down-left
+                (-1, 1),    # up-right
+                (-1, -1),   # up-left
+                (1, 1),     # down-right
+                (1, -1),    # down-left
             ])
 
         elif isinstance(piece, Rook):
             straightline_moves([
-                (-1, 0),  # up
-                (0, 1),  # right
-                (1, 0),  # down
-                (0, -1),  # left
+                (-1, 0),    # up
+                (0, 1),     # right
+                (1, 0),     # down
+                (0, -1),    # left
             ])
 
         elif isinstance(piece, Queen):
             straightline_moves([
-                (-1, 1),  # up-right
-                (-1, -1),  # up-left
-                (1, 1),  # down-right
-                (1, -1),  # down-left
-                (-1, 0),  # up
-                (0, 1),  # right
-                (1, 0),  # down
-                (0, -1)  # left
+                (-1, 1),    # up-right
+                (-1, -1),   # up-left
+                (1, 1),     # down-right
+                (1, -1),    # down-left
+                (-1, 0),    # up
+                (0, 1),     # right
+                (1, 0),     # down
+                (0, -1)     # left
             ])
 
         elif isinstance(piece, King):

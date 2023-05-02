@@ -7,18 +7,25 @@ from theme import Theme
 class Config:
 
     def __init__(self):
+        # Empty list to hold themes
         self.themes = []
+        # Calling private method to populate themes list
         self._add_themes()
+        # Index of the current theme being used
         self.idx = 0
+        # Current theme
         self.theme = self.themes[self.idx]
+        # Creating a font object for the game
         self.font = py.font.SysFont('Gill Sans', 18, bold=True)
+        # Creating a Sound object for move sound
         self.move_sound = Sound(
-            os.path.join('assets/sounds/move.wav'))
+        os.path.join('assets/sounds/move.wav'))
+        # Creating a Sound object for capture sound
         self.capture_sound = Sound(
-            os.path.join('assets/sounds/capture.wav'))
+        os.path.join('assets/sounds/capture.wav'))
+        # Creating a Sound object for theme change sound
         self.change_sound = Sound(
-            os.path.join('assets/sounds/change.wav')
-        )
+        os.path.join('assets/sounds/change.wav'))
 
     def change_theme(self):
         self.idx += 1
